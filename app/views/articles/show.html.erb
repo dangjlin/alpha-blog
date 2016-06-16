@@ -4,3 +4,5 @@
 
 <p>Description: <%= @article.description %></p>
 
+<p><%= link_to "edit this article", edit_article_path(@article) %></p>
+<%= link_to "back to all article listing ", articles_path %> 
