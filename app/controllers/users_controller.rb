@@ -16,8 +16,9 @@ class UsersController < ApplicationController
     #debugger
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "welcome to the Alpha-Blog #{@user.username}"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def require_same_user
+  def require_same_userex
     if !logged_in? || current_user != @user
       
       flash[:danger] = "You can only edit your own account or you need to log in"
